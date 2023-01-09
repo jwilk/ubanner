@@ -40,11 +40,12 @@ def pango_print(text, size=(76, 24), font=None):
     charset = ' ░▒█'
     cdiv = 512 // len(charset)
     for y in range(ht // 2):
+        s = ''
         for x in range(wd):
             v = data[2 * y * stride + x] + data[(2 * y + 1) * stride + x]
             v //= cdiv
-            print(charset[v], end='')
-        print()
+            s += charset[v]
+        print(s.rstrip())
 
 def main():
     ap = argparse.ArgumentParser()
@@ -59,7 +60,6 @@ if __name__ == '__main__':
     main()
 
 # TODO: full screen should be opt-in
-# TODO: strip trailing spaces
 # TODO: strip leading/trailing newlines
 # TODO: set SIGPIPE to SIG_DFL
 # TODO: read from stdin
