@@ -24,6 +24,7 @@ def pango_print(text, size=(76, 24), font=None):
     layout = PangoCairo.create_layout(ctx)
     font = Pango.FontDescription(font)
     for i in range(size[1], 1, -1):
+        # FIXME: linear search is slow
         font.set_absolute_size(i * Pango.SCALE)
         layout.set_font_description(font)
         layout.set_text(text, -1);
