@@ -47,11 +47,10 @@ def pango_print(text, size=(76, 24), font=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('text', metavar='TEXT')
-    ap.add_argument('tail', metavar='...', nargs=argparse.REMAINDER, help=argparse.SUPPRESS)
+    ap.add_argument('text', metavar='TEXT', nargs='+')
     ap.add_argument('-f', '--font')
     opts = ap.parse_args()
-    text = str.join('\n', [opts.text, *opts.tail])
+    text = str.join('\n', opts.text)
     size = shutil.get_terminal_size()
     pango_print(text, size=size, font=opts.font)
 
