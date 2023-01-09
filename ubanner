@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+# encoding=UTF-8
+
+# Copyright © 2023 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
+import argparse
+import shutil
+
+import cairo
+import gi
+
+gi.require_version('Pango', '1.0')
+from gi.repository import Pango
+gi.require_version('PangoCairo', '1.0')
+from gi.repository import PangoCairo
+
+[*()]  # Python >= 3.5 is required
+
+def pango_print(text, size=(76, 24), font=None):
+    size = (size[0], size[1] * 2)
+    surface = cairo.ImageSurface(cairo.FORMAT_A8, *size)
+    ctx = cairo.Context(surface)
+    layout = PangoCairo.create_layout(ctx)
+    font = Pango.FontDescription(font)
+    for i in range(size[1], 1, -1):
+        font.set_absolute_size(i * Pango.SCALE)
+        layout.set_font_description(font)
+        layout.set_text(text, -1);
+        wd, ht = layout.get_pixel_size()
+        if wd <= size[0] and ht <= size[1]:
+            break
+    else:
+        raise RuntimeError('could not render text')
+    PangoCairo.update_layout(ctx, layout)
+    PangoCairo.show_layout(ctx, layout)
+    data = surface.get_data()
+    stride = surface.get_stride()
+    charset = ' ░▒█'
+    cdiv = 512 // len(charset)
+    for y in range(ht // 2):
+        for x in range(wd):
+            v = data[2 * y * stride + x] + data[(2 * y + 1) * stride + x]
+            v //= cdiv
+            print(charset[v], end='')
+        print()
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('text', metavar='TEXT')
+    ap.add_argument('tail', metavar='...', nargs=argparse.REMAINDER, help=argparse.SUPPRESS)
+    ap.add_argument('-f', '--font')
+    opts = ap.parse_args()
+    text = str.join('\n', [opts.text, *opts.tail])
+    size = shutil.get_terminal_size()
+    pango_print(text, size=size, font=opts.font)
+
+if __name__ == '__main__':
+    main()
+
+# vim:ts=4 sts=4 sw=4 et
