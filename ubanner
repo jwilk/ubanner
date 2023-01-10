@@ -20,7 +20,7 @@ from gi.repository import PangoCairo
 
 [*()]  # Python >= 3.5 is required
 
-def pango_print(text, size=(76, 24), font=None):
+def pango_render(text, size=(76, 24), font=None):
     size = (size[0], size[1] * 2)
     surface = cairo.ImageSurface(cairo.FORMAT_A8, *size)
     ctx = cairo.Context(surface)
@@ -50,7 +50,7 @@ def pango_print(text, size=(76, 24), font=None):
             v = data[2 * y * stride + x] + data[(2 * y + 1) * stride + x]
             v //= cdiv
             s += charset[v]
-        print(s.rstrip())
+        yield s.rstrip()
 
 def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
@@ -66,7 +66,9 @@ def main():
     else:
         text = str.join('\n', opts.text)
     size = shutil.get_terminal_size()
-    pango_print(text, size=size, font=opts.font)
+    lines = pango_render(text, size=size, font=opts.font)
+    for line in lines:
+        print(line)
 
 if __name__ == '__main__':
     main()
