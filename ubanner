@@ -6,6 +6,7 @@
 
 import argparse
 import bisect
+import itertools
 import shutil
 import signal
 import sys
@@ -56,6 +57,9 @@ def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     ap = argparse.ArgumentParser()
     ap.add_argument('text', metavar='TEXT', nargs='*')
+    ap.add_argument('--trim', action='store_true',
+        help='trim leading/trailing empty lines',
+    )
     ap.add_argument('-f', '--font')
     opts = ap.parse_args()
     if not opts.text:
@@ -67,6 +71,10 @@ def main():
         text = str.join('\n', opts.text)
     size = shutil.get_terminal_size()
     lines = pango_render(text, size=size, font=opts.font)
+    if opts.trim:
+        lines = list(itertools.dropwhile(''.__eq__, lines))
+        while lines and not lines[-1]:
+            lines.pop()
     for line in lines:
         print(line)
 
@@ -74,6 +82,5 @@ if __name__ == '__main__':
     main()
 
 # TODO: full screen should be opt-in
-# TODO: strip leading/trailing newlines
 
 # vim:ts=4 sts=4 sw=4 et
