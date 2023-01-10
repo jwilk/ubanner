@@ -30,11 +30,11 @@ def pango_print(text, size=(76, 24), font=None):
     def set_font_size(i):
         if i < 1:
             return False
-        font.set_absolute_size(i * Pango.SCALE)
+        font.set_absolute_size(i)
         layout.set_font_description(font)
         wd, ht = layout.get_pixel_size()
         return wd > size[0] or ht > size[1]
-    i = bisect.bisect(range(size[1] + 1), False, key=set_font_size) - 1
+    i = bisect.bisect(range(size[1] * Pango.SCALE + 1), False, key=set_font_size) - 1
     if i < 1 or set_font_size(i):
         raise RuntimeError('could not render text')
     PangoCairo.update_layout(ctx, layout)
