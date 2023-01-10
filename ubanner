@@ -24,12 +24,12 @@ def pango_print(text, size=(76, 24), font=None):
     surface = cairo.ImageSurface(cairo.FORMAT_A8, *size)
     ctx = cairo.Context(surface)
     layout = PangoCairo.create_layout(ctx)
+    layout.set_text(text, -1);
     font = Pango.FontDescription(font)
     for i in range(size[1], 1, -1):
         # FIXME: linear search is slow
         font.set_absolute_size(i * Pango.SCALE)
         layout.set_font_description(font)
-        layout.set_text(text, -1);
         wd, ht = layout.get_pixel_size()
         if wd <= size[0] and ht <= size[1]:
             break
