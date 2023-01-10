@@ -60,7 +60,7 @@ def main():
     ap.add_argument('--trim', action='store_true',
         help='trim leading/trailing empty lines',
     )
-    ap.add_argument('-f', '--font')
+    ap.add_argument('--font')
     opts = ap.parse_args()
     if not opts.text:
         if sys.stdin.isatty():
