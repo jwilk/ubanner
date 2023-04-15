@@ -21,7 +21,7 @@ from gi.repository import PangoCairo
 
 [*()]  # Python >= 3.5 is required
 
-def pango_render(text, size=(76, 24), font=None):
+def pango_render(text, size=(76, 24), font=None, font_size=None):
     size = (size[0], size[1] * 2)
     surface = cairo.ImageSurface(cairo.FORMAT_A8, *size)
     ctx = cairo.Context(surface)
@@ -35,9 +35,13 @@ def pango_render(text, size=(76, 24), font=None):
         layout.set_font_description(font)
         wd, ht = layout.get_pixel_size()
         return wd > size[0] or ht > size[1]
-    i = bisect.bisect(range(size[1] * Pango.SCALE + 1), False, key=set_font_size) - 1
-    if i < 1 or set_font_size(i):
-        raise RuntimeError('could not render text')
+    if font_size is None:
+        i = bisect.bisect(range(size[1] * Pango.SCALE + 1), False, key=set_font_size) - 1
+        if i < 1 or set_font_size(i):
+            raise RuntimeError('could not render text')
+    else:
+        i = max(1, font_size * Pango.SCALE)
+        set_font_size(i)
     PangoCairo.update_layout(ctx, layout)
     PangoCairo.show_layout(ctx, layout)
     data = surface.get_data()
@@ -45,6 +49,8 @@ def pango_render(text, size=(76, 24), font=None):
     charset = ' ░▒█'
     cdiv = 512 // len(charset)
     wd, ht = layout.get_pixel_size()
+    wd = min(wd, size[0])
+    ht = min(ht, size[1])
     for y in range(ht // 2):
         s = ''
         for x in range(wd):
@@ -61,6 +67,8 @@ def main():
         help='trim leading/trailing empty lines',
     )
     ap.add_argument('--font')
+    ap.add_argument('--font-size', type=int, default=28)
+    ap.add_argument('-s', '--full-screen', dest='font_size', action='store_const', const=None)
     opts = ap.parse_args()
     if not opts.text:
         if sys.stdin.isatty():
@@ -70,7 +78,7 @@ def main():
     else:
         text = str.join('\n', opts.text)
     size = shutil.get_terminal_size()
-    lines = pango_render(text, size=size, font=opts.font)
+    lines = pango_render(text, size=size, font=opts.font, font_size=opts.font_size)
     if opts.trim:
         lines = list(itertools.dropwhile(''.__eq__, lines))
         while lines and not lines[-1]:
@@ -80,7 +88,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# TODO: full screen should be opt-in
 
 # vim:ts=4 sts=4 sw=4 et
