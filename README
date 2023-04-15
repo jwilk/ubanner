@@ -1,3 +1,6 @@
+Overview
+========
+
 .. code:: console
 
    $ ubanner --trim 'νιάου'
@@ -13,5 +16,13 @@
       ▒██    ▒██       ▒██      ░██▒      ███▒     ░██▒       ▒██     ▒██      ▒██░
       ▒██  ▒█▒         ░██       ░██░    ▒▒▒██      ░██░     ▒██░     ░██     ▒██░
       ▒███▒░            ░▒██▒      ▒██▒▒▒░  ░███▒     ░▒█▒▒▒█▒░         ▒██▒██▒░
+
+Dependencies
+============
+
+* Python (≥ 3.5)
+* PyGI
+* Pango GIR bindings
+* Pycairo (≥ 1.11)
 
 .. vim:ft=rst ts=3 sts=3 sw=3 et
