@@ -46,7 +46,6 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
     wd = min(wd, size[0])
     surface = cairo.ImageSurface(cairo.FORMAT_A8, wd, ht)
     ctx = cairo.Context(surface)
-    PangoCairo.update_layout(ctx, layout)
     PangoCairo.show_layout(ctx, layout)
     data = surface.get_data()
     stride = surface.get_stride()
