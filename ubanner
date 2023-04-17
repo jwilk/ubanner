@@ -23,7 +23,7 @@ from gi.repository import PangoCairo
 
 def pango_render(text, size=(76, 24), font=None, font_size=None):
     size = (size[0], size[1] * 2)
-    surface = cairo.ImageSurface(cairo.FORMAT_A8, *size)
+    surface = cairo.ImageSurface(cairo.FORMAT_A8, 1, 1)
     ctx = cairo.Context(surface)
     layout = PangoCairo.create_layout(ctx)
     layout.set_text(text, -1);
@@ -42,15 +42,16 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
     else:
         i = max(1, font_size * Pango.SCALE)
         set_font_size(i)
+    wd, ht = layout.get_pixel_size()
+    wd = min(wd, size[0])
+    surface = cairo.ImageSurface(cairo.FORMAT_A8, wd, ht)
+    ctx = cairo.Context(surface)
     PangoCairo.update_layout(ctx, layout)
     PangoCairo.show_layout(ctx, layout)
     data = surface.get_data()
     stride = surface.get_stride()
     charset = ' ░▒█'
     cdiv = 512 // len(charset)
-    wd, ht = layout.get_pixel_size()
-    wd = min(wd, size[0])
-    ht = min(ht, size[1])
     for y in range(ht // 2):
         s = ''
         for x in range(wd):
