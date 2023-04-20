@@ -59,6 +59,9 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
             s += charset[v]
         yield s.rstrip()
 
+class default:
+    font_size = 28
+
 def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     ap = argparse.ArgumentParser()
@@ -67,7 +70,9 @@ def main():
         help='trim leading/trailing empty lines',
     )
     ap.add_argument('--font')
-    ap.add_argument('--font-size', type=int, default=28)
+    ap.add_argument('--font-size', type=int, default=default.font_size,
+        help=f'font size in pixels (default: {default.font_size})'
+    )
     ap.add_argument('-s', '--full-screen', dest='font_size', action='store_const', const=None)
     opts = ap.parse_args()
     if not opts.text:
