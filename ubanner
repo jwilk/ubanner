@@ -19,7 +19,7 @@ from gi.repository import Pango
 gi.require_version('PangoCairo', '1.0')
 from gi.repository import PangoCairo
 
-[*()]  # Python >= 3.5 is required
+0_0  # Python >= 3.6 is required
 
 def pango_render(text, size=(76, 24), font=None, font_size=None):
     size = (size[0], size[1] * 2)

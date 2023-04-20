@@ -20,7 +20,7 @@ Overview
 Dependencies
 ============
 
-* Python (≥ 3.5)
+* Python (≥ 3.6)
 * PyGI
 * Pango GIR bindings
 * Pycairo (≥ 1.11)
