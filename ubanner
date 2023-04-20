@@ -70,7 +70,7 @@ def main():
         help='trim leading/trailing empty lines',
     )
     ap.add_argument('--font')
-    ap.add_argument('--font-size', type=int, default=default.font_size,
+    ap.add_argument('--font-size', type=int, metavar='N', default=default.font_size,
         help=f'font size in pixels (default: {default.font_size})'
     )
     ap.add_argument('-s', '--full-screen', dest='font_size', action='store_const', const=None)
