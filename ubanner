@@ -26,7 +26,7 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
     surface = cairo.ImageSurface(cairo.FORMAT_A8, 1, 1)
     ctx = cairo.Context(surface)
     layout = PangoCairo.create_layout(ctx)
-    layout.set_text(text, -1);
+    layout.set_text(text, -1)
     font = Pango.FontDescription(font)
     def set_font_size(i):
         if i < 1:
