@@ -10,6 +10,7 @@ jobs:
         include:
         - os: debian:10  # buster (Python 3.7, Pycairo 1.16)
         - os: debian:11  # bullseye (Python 3.9, Pycairo 1.16)
+        - os: debian:12  # bookworm (Python 3.11, Pycairo 1.20)
         - os: debian:unstable # (Python >= 3.11, Pycairo >= 1.20)
     runs-on: ubuntu-latest
     container: ${{matrix.os}}
