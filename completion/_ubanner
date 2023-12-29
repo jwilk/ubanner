@@ -1,0 +1,13 @@
+#compdef ubanner
+
+# zsh completion for ubanner
+
+local arguments=(
+{-h,--help}'[show help]'
+'--trim[trim leading/trailing empty lines]'
+'--font[use this font]'
+'--font-size[font size in pixels (default: 28)]:size:(28 36 42 50 58 64 72 80 88 96)'
+{-s,--full-screen}'[full screen mode]'
+)
+
+_arguments -s -S $arguments
