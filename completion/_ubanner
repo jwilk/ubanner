@@ -2,12 +2,20 @@
 
 # zsh completion for ubanner
 
-local arguments=(
-{-h,--help}'[show help]'
-'--trim[trim leading/trailing empty lines]'
-'--font[use this font]'
-'--font-size[font size in pixels (default: 28)]:size:(28 36 42 50 58 64 72 80 88 96)'
-{-s,--full-screen}'[full screen mode]'
-)
+#typeset -A opt_args
 
-_arguments -s -S $arguments
+_arguments -s -S \
+  {-h,--help}'[show help]' \
+    '--trim[trim leading/trailing empty lines]' \
+    '--font[use this font]:fontname:->fonts' \
+    '--font-size[font size in pixels (default: 28)]:size:(28 36 42 50 58 64 72 80 88 96)' \
+    '--list-fonts[print list of available font faces]' \
+    {-s,--full-screen}'[full screen mode]' && return 0
+
+case "$state" in
+  fonts)
+    local -a fontfaces
+    fontfaces=("${(@f)$(ubanner --list-fonts)}")
+    _values "fontname" $fontfaces
+    ;;
+esac
