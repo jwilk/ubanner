@@ -2,8 +2,6 @@
 
 # zsh completion for ubanner
 
-#typeset -A opt_args
-
 _arguments -s -S \
   {-h,--help}'[show help]' \
     '--trim[trim leading/trailing empty lines]' \
