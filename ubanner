@@ -82,7 +82,7 @@ def main():
     ap.add_argument('--trim', action='store_true',
         help='trim leading/trailing empty lines',
     )
-    ap.add_argument('--font', help='use this font')
+    ap.add_argument('--font', help='use this font face')
     ap.add_argument('--font-size', type=int, metavar='N', default=default.font_size,
         help=f'font size in pixels (default: {default.font_size})'
     )
