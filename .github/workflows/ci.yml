@@ -28,6 +28,7 @@ jobs:
       run: |
         export LC_ALL=C.UTF-8
         ./ubanner --trim 'νιάου'
+        ./ubanner --full-screen 'νιάου'
 
   static:
     runs-on: ${{matrix.os}}
