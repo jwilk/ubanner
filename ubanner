@@ -21,6 +21,19 @@ from gi.repository import PangoCairo
 
 0_0  # Python >= 3.6 is required
 
+if sys.version_info < (3, 11):
+    def kbisect(a, x, *, key):
+        lo = 0
+        hi = len(a)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if x < key(a[mid]):
+                hi = mid
+            else:
+                lo = mid + 1
+        return lo
+    bisect.bisect = kbisect
+
 def pango_render(text, size=(76, 24), font=None, font_size=None):
     size = (size[0], size[1] * 2)
     surface = cairo.ImageSurface(cairo.FORMAT_A8, 1, 1)
