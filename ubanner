@@ -75,9 +75,30 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
 class default:
     font_size = 28
 
+class act_list_fonts(argparse.Action):
+    def __call__(self, *args, **kwargs):
+        font_map = PangoCairo.font_map_get_default()
+        for family in font_map.list_families():
+            family_name = family.get_name()
+            seen = set()
+            for face in family.list_faces():
+                descr = face.describe().to_string()
+                if descr == family_name:
+                    pass
+                elif face.is_synthesized():
+                    continue  # meh
+                if descr in seen:
+                    continue
+                print(descr)
+                seen.add(descr)
+        sys.exit()
+
 def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     ap = argparse.ArgumentParser()
+    ap.add_argument('--list-fonts', nargs=0, action=act_list_fonts,
+        help='print list of available font faces',
+    )
     ap.add_argument('text', metavar='TEXT', nargs='*')
     ap.add_argument('--trim', action='store_true',
         help='trim leading/trailing empty lines',
