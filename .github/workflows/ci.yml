@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ${{matrix.os}}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: install deps
       run: |
         printf 'Apt::Install-Recommends "false";\n' | tee -a /etc/apt/apt.conf
@@ -48,12 +48,12 @@ jobs:
           os: ubuntu-22.04
         - python-version: '3.11'
           os: ubuntu-22.04
-        - python-version: '3.12-dev'
+        - python-version: '3.12'
           os: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: set up Python ${{matrix.python-version}}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{matrix.python-version}}
     - name: run pydiatra
