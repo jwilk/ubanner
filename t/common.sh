@@ -8,6 +8,8 @@ set -e -u
 dir="${0%/*}/.."
 prog="${UBANNER_TEST_TARGET:-"$dir/ubanner"}"
 
+echo "# test target = $prog"
+
 is_unicode_locale()
 {
     local charset=$'\u2591\u2592\u2588'
