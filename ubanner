@@ -7,6 +7,7 @@
 import argparse
 import bisect
 import itertools
+import locale
 import shutil
 import signal
 import sys
@@ -62,7 +63,6 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
     PangoCairo.show_layout(ctx, layout)
     data = surface.get_data()
     stride = surface.get_stride()
-    charset = ' ░▒█'
     cdiv = 512 // len(charset)
     for y in range(ht // 2):
         s = ''
@@ -92,6 +92,13 @@ class act_list_fonts(argparse.Action):
                 print(descr)
                 seen.add(descr)
         sys.exit()
+
+encoding = locale.nl_langinfo(locale.CODESET)
+charset = ' ░▒█'
+try:
+    charset.encode(encoding, 'strict')
+except UnicodeError:
+    charset = ' +*#'
 
 def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
