@@ -3,6 +3,22 @@ Overview
 
 .. code:: console
 
+   $ ubanner --help
+   usage: ubanner [-h] [--version] [--list-fonts] [--trim] [-f FONT] [-s N] [-S]
+                  [TEXT ...]
+
+   positional arguments:
+     TEXT
+
+   options:
+     -h, --help            show this help message and exit
+     --version             show version information and exit
+     --list-fonts          print list of available font faces
+     --trim                trim leading/trailing empty lines
+     -f FONT, --font FONT  use this font face
+     -s N, --font-size N   font size in pixels (default: 28)
+     -S, --full-screen     max font size to fit terminal window
+
    $ ubanner --trim πανό
                                                                    ░░░
                                                                   ██░
