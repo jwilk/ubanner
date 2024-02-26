@@ -22,6 +22,29 @@ from gi.repository import PangoCairo
 
 0_0  # Python >= 3.6 is required
 
+__version__ = '0'  # not released yet
+
+class VersionAction(argparse.Action):
+    '''
+    argparse --version action
+    '''
+
+    def __init__(self, option_strings, dest=argparse.SUPPRESS):
+        super().__init__(
+            option_strings=option_strings,
+            dest=dest,
+            nargs=0,
+            help='show version information and exit'
+        )
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        print(f'{parser.prog} {__version__}')
+        print('+ Python {0}.{1}.{2}'.format(*sys.version_info))
+        print('+ PyGI', gi.__version__)
+        print('+ Pango', Pango.version_string())
+        print('+ Cairo', cairo.version)
+        parser.exit()
+
 if sys.version_info < (3, 11):
     def kbisect(a, x, *, key):
         lo = 0
@@ -103,6 +126,7 @@ except UnicodeError:
 def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     ap = argparse.ArgumentParser()
+    ap.add_argument('--version', action=VersionAction)
     ap.add_argument('--list-fonts', nargs=0, action=act_list_fonts,
         help='print list of available font faces',
     )
