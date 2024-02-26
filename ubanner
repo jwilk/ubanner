@@ -138,7 +138,9 @@ def main():
     ap.add_argument('-s', '--font-size', type=int, metavar='N', default=default.font_size,
         help=f'font size in pixels (default: {default.font_size})'
     )
-    ap.add_argument('-S', '--full-screen', dest='font_size', action='store_const', const=None)
+    ap.add_argument('-S', '--full-screen', dest='font_size', action='store_const', const=None,
+        help='max font size to fit terminal window'
+    )
     opts = ap.parse_args()
     if not opts.text:
         if sys.stdin.isatty():
