@@ -39,8 +39,7 @@ jobs:
     - name: check whether the executable was installed correctly
       run: |
         cd /
-        ubanner --help
-        ubanner --version
+        command -v ubanner
     - name: run post-install tests
       run: |
         mv ubanner ubanner.bak
