@@ -4,11 +4,12 @@
 
 _arguments -s -S \
   {-h,--help}'[show help]' \
-    '--trim[trim leading/trailing empty lines]' \
-    '--font[use this font]:fontname:->fonts' \
-    '--font-size[font size in pixels (default: 28)]:size:(28 36 42 50 58 64 72 80 88 96)' \
-    '--list-fonts[print list of available font faces]' \
-    {-s,--full-screen}'[full screen mode]'
+  '--version[show version information and exit]' \
+  '--list-fonts[print list of available font faces]' \
+  '--trim[trim leading/trailing empty lines]' \
+  {-f,--font}'[use this fontface]:fontname:->fonts' \
+  {-s,--font-size}'[font size in pixels (default: 28)]:size:(28 36 42 50 58 64 72 80 88 96)' \
+  {-S,--full-screen}'[full screen mode]'
 
 case "$state" in
   fonts)
