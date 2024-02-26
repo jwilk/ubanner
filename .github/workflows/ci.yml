@@ -40,6 +40,7 @@ jobs:
       run: |
         cd /
         ubanner --help
+        ubanner --version
     - name: run post-install tests
       run: |
         mv ubanner ubanner.bak
