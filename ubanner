@@ -134,11 +134,11 @@ def main():
     ap.add_argument('--trim', action='store_true',
         help='trim leading/trailing empty lines',
     )
-    ap.add_argument('--font', help='use this font face')
-    ap.add_argument('--font-size', type=int, metavar='N', default=default.font_size,
+    ap.add_argument('-f', '--font', help='use this font face')
+    ap.add_argument('-s', '--font-size', type=int, metavar='N', default=default.font_size,
         help=f'font size in pixels (default: {default.font_size})'
     )
-    ap.add_argument('-s', '--full-screen', dest='font_size', action='store_const', const=None)
+    ap.add_argument('-S', '--full-screen', dest='font_size', action='store_const', const=None)
     opts = ap.parse_args()
     if not opts.text:
         if sys.stdin.isatty():
