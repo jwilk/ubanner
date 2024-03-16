@@ -2,14 +2,16 @@
 
 # zsh completion for ubanner
 
-_arguments -s -S \
-  {-h,--help}'[show help]' \
-  '--version[show version information and exit]' \
-  '--list-fonts[print list of available font faces]' \
+_arguments -S \
   '--trim[trim leading/trailing empty lines]' \
   {-f,--font}'[use this fontface]:fontname:->fonts' \
-  {-s,--font-size}'[font size in pixels (default: 28)]' \
-  {-S,--full-screen}'[max font size to fit terminal window]'
+  + '(fs)' \
+  {-s,--font-size}'[font size in pixels]: :_numbers -d28 -l14 -m280' \
+  {-S,--full-screen}'[max font size to fit terminal window]' \
+  + '(excl)' \
+  {-h,--help}:'[show help]' \
+  '--version:[show version information and exit]' \
+  '--list-fonts:[print list of available font faces]'
 
 case "$state" in
   fonts)
