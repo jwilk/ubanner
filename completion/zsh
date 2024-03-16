@@ -8,7 +8,7 @@ _arguments -s -S \
   '--list-fonts[print list of available font faces]' \
   '--trim[trim leading/trailing empty lines]' \
   {-f,--font}'[use this fontface]:fontname:->fonts' \
-  {-s,--font-size}'[font size in pixels (default: 28)]:size:(28 36 42 50 58 64 72 80 88 96)' \
+  {-s,--font-size}'[font size in pixels (default: 28)]' \
   {-S,--full-screen}'[max font size to fit terminal window]'
 
 case "$state" in
