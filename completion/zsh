@@ -1,6 +1,6 @@
 #compdef ubanner
-
-# zsh completion for ubanner
+# Copyright © 2024 Christopher Bock <christopher@bocki.com>
+# # SPDX-License-Identifier: MIT
 local arguments
 
 arguments=(
