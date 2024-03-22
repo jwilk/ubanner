@@ -1,18 +1,20 @@
 #compdef ubanner
 
 # zsh completion for ubanner
+local arguments
 
-_arguments -S \
-  '--trim[trim leading/trailing empty lines]' \
-  {-f,--font}'[use this fontface]:fontname:->fonts' \
-  + '(fs)' \
-  {-s,--font-size}'[font size in pixels]: :_numbers -d28 -l14 -m280' \
-  {-S,--full-screen}'[max font size to fit terminal window]' \
-  + '(excl)' \
-  {-h,--help}:'[show help]' \
-  '--version:[show version information and exit]' \
+arguments=(
+  '--trim[trim leading/trailing empty lines]'
+  '(-f --font)'{-f,--font}'[use this fontface]:font:->fonts'
+  + '(fs)'
+  '(-s --font-size)'{-s,--font-size}'[font size in pixels]: :_numbers -d28 -l14 -m280'
+  '(-S --full-screen)'{-S,--full-screen}'[max font size to fit terminal window]'
+  + '(excl)'
+  {-h,--help}:'[show help]'
+  '--version:[show version information and exit]'
   '--list-fonts:[print list of available font faces]'
-
+)
+_arguments -S $arguments
 case "$state" in
   fonts)
     local -a fontfaces
