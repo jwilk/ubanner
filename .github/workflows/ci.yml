@@ -21,7 +21,7 @@ jobs:
         printf 'Apt::Install-Recommends "false";\n' | tee -a /etc/apt/apt.conf
         apt-get update
         apt-get install -y python3-gi-cairo gir1.2-pango-1.0
-        apt-get install -y make perl
+        apt-get install -y make perl man-db
     - name: set up PATH
       run: |
         PATH="$PATH:$HOME/.local/bin"
@@ -40,6 +40,11 @@ jobs:
       run: |
         cd /
         command -v ubanner
+    - name: check whether the man page was installed correctly
+      run: |
+        cd /
+        export MANPATH="$HOME/.local/share/man" MANWIDTH=80
+        man 1 ubanner | grep -A 10 -w UBANNER
     - name: run post-install tests
       run: |
         mv ubanner ubanner.bak
