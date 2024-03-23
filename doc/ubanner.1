@@ -1,0 +1,68 @@
+.\" Copyright © 2024 Jakub Wilk <jwilk@jwilk.net>
+.\" SPDX-License-Identifier: MIT
+
+.TH UBANNER 1 2024-03-23 "ubanner 0"
+.SH NAME
+ubanner \- Unicode-enabled banner(1)-like program
+.SH SYNOPSIS
+.SY ubanner
+.RB [ \-\-trim ]
+.RB [ \-f " \fIFONT\fP]"
+.RB [ \-s " \fIN\fP]"
+.RB [ \-S ]
+.RI [ TEXT " ...]"
+.YS
+.SY ubanner
+.B \-\-list\-fonts
+.YS
+.IP
+.SH OPTIONS
+.TP
+.B \-\-trim
+Trim leading and trailing empty lines.
+.TP
+.BR \-f ", " \-\-font " \fIFONT\fP"
+Set font face to
+.IR FONT .
+.TP
+.BR \-s ", " \-\-font\-size " \fIN\fP"
+Set font size to
+.IR N " pixels."
+The default is 28.
+.TP
+.BR \-S ", " \-\-full\-screen
+Use the maximum font size to fit the terminal window.
+.TP
+.BR \-\-list\-fonts
+Print the list of available font faces.
+.TP
+.BR -h ", " \-\-help
+Show help message and exit.
+.TP
+.B \-\-version
+Show version information and exit.
+.SH EXAMPLE
+.EX
+$ ubanner \-f \(aqDejaVu Sans\(aq \-s 32 $\(aqd\eu0361\eu0292\(aq
+             +++********+++
+        +*#####**********#####*+
+      ##*+                   ++*##
+              +##+
+              +##+
+              +##+
+     *######* +##+   +#############+
+   *###++ ++*####+             *###
+  *##*       +###+            ###*
+  ###         *##+          +###
+  ###         +##+         ###+
+  ###         *##+       +###*++
+  *##*       +###+       +########+
+   *###++ ++*####+              *###
+     *######* +##+               *##*
+                                 *##*
+                     ++         *###
+                     *############+
+                        ++++++++
+.EE
+.SH SEE ALSO
+.BR banner (1)
