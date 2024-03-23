@@ -7,6 +7,7 @@ PREFIX = /usr/local
 DESTDIR =
 
 bindir = $(PREFIX)/bin
+mandir = $(PREFIX)/share/man
 
 .PHONY: all
 all: ;
@@ -21,6 +22,9 @@ install: ubanner
 		$(<) > $(<).tmp
 	install $(<).tmp $(DESTDIR)$(bindir)/$(<)
 	rm $(<).tmp
+	# manual page:
+	install -d $(DESTDIR)$(mandir)/man1
+	install -p -m644 doc/$(<).1 $(DESTDIR)$(mandir)/man1/
 
 .PHONY: test
 test: verbose=
