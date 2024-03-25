@@ -5,7 +5,7 @@ local arguments
 
 arguments=(
   '--trim[trim leading/trailing empty lines]'
-  '(-f --font)'{-f,--font}'[use this fontface]:font:->fonts'
+  '(-f --font)'{-f,--font}'[use this font face]:font:->fonts'
   + '(fs)'
   '(-s --font-size)'{-s,--font-size}'[font size in pixels]: :_numbers -d28 -l14 -m280'
   '(-S --full-screen)'{-S,--full-screen}'[max font size to fit terminal window]'
