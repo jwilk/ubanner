@@ -1,0 +1,26 @@
+#compdef ubanner
+
+# Copyright © 2024 Christopher Bock <christopher@bocki.com>
+# SPDX-License-Identifier: MIT
+
+local arguments
+
+arguments=(
+  '--trim[trim leading/trailing empty lines]'
+  '(-f --font)'{-f,--font}'[use this font face]:font:->fonts'
+  + '(fs)'
+  '(-s --font-size)'{-s,--font-size}'[font size in pixels]: :_numbers -d28 -l14 -m280'
+  '(-S --full-screen)'{-S,--full-screen}'[max font size to fit terminal window]'
+  + '(excl)'
+  {-h,--help}'[show help]'
+  '--version[show version information and exit]'
+  '--list-fonts[print list of available font faces]'
+)
+_arguments -S $arguments
+case "$state" in
+  fonts)
+    local -a fontfaces
+    fontfaces=("${(@f)$(ubanner --list-fonts)}")
+    _values "fontname" $fontfaces
+    ;;
+esac
