@@ -8,6 +8,7 @@ DESTDIR =
 
 bindir = $(PREFIX)/bin
 mandir = $(PREFIX)/share/man
+zshcompletiondir = $(PREFIX)/share/zsh/site-functions
 
 .PHONY: all
 all: ;
@@ -25,6 +26,9 @@ install: ubanner
 	# manual page:
 	install -d $(DESTDIR)$(mandir)/man1
 	install -p -m644 doc/$(<).1 $(DESTDIR)$(mandir)/man1/
+	# zsh completion:
+	install -d $(DESTDIR)$(zshcompletiondir)
+	install -p -m644 completion/zsh/_* $(DESTDIR)$(zshcompletiondir)
 
 .PHONY: test
 test: verbose=
