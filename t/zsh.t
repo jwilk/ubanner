@@ -7,6 +7,7 @@ no lib '.';  # CVE-2016-1238
 
 use strict;
 use warnings;
+use v5.14;
 
 use Data::Dumper ();
 use English qw(-no_match_vars);
