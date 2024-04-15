@@ -12,7 +12,7 @@ if out=$("$prog" --version)
 then
     sed -e 's/^/# /' <<< "$out"
     case $out in
-        $'ubanner 0\n'*)
+        $'ubanner 0.1\n'*)
             echo ok 1;;
         *)
             echo not ok 1;;

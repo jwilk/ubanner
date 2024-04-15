@@ -22,7 +22,7 @@ from gi.repository import PangoCairo
 
 0_0  # Python >= 3.6 is required
 
-__version__ = '0'  # not released yet
+__version__ = '0.1'
 
 class VersionAction(argparse.Action):
     '''
