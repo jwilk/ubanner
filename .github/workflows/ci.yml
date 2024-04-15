@@ -51,6 +51,7 @@ jobs:
       run: |
         mv ubanner ubanner.bak
         export LC_ALL=C.UTF-8
+        export MANPATH="$HOME/.local/share/man"
         make test-installed verbose=1
         mv ubanner.bak ubanner
 

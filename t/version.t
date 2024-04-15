@@ -34,8 +34,15 @@ then
 else
     echo 'ok 3'
 fi
-line=$(grep '^[.]TH ' "$dir/doc/"*.1)
-IFS=' "' read -r _ _ _ _ _ man_version _ <<< "$line"
+if [[ $prog = ubanner ]]
+then
+    man_target=$prog
+else
+    man_target="$dir/doc/ubanner.1"
+fi
+echo "# man page target = $man_target"
+line=$(MANWIDTH=80 man "$man_target" | tail -n 1)
+IFS=' "' read -r _ man_version _ <<< "$line"
 echo "# man page version = $man_version"
 if [[ $man_version = $changelog_version ]]
 then
