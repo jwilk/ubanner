@@ -1,0 +1,36 @@
+severity = 1
+verbose = %f:%l: [%p] %m\n
+
+[-CodeLayout::RequireTidyCode]
+# no, thanks
+
+[-ErrorHandling::RequireCarping]
+# die is good enough for our purposes
+
+[InputOutput::ProhibitBacktickOperators]
+only_in_void_context = 1
+
+[InputOutput::RequireCheckedSyscalls]
+functions = :builtins
+
+[-Modules::RequireVersionVar]
+# useful only for modules
+ 
+[-RegularExpressions::RequireDotMatchAnything]
+[-RegularExpressions::RequireLineBoundaryMatching]
+# no, thanks
+
+[-RegularExpressions::RequireExtendedFormatting]
+# no, thanks
+
+[-ValuesAndExpressions::ProhibitEmptyQuotes]
+[-ValuesAndExpressions::ProhibitNoisyQuotes]
+# no, thanks
+
+[-ValuesAndExpressions::ProhibitMagicNumbers]
+# no, thanks
+
+[-ValuesAndExpressions::ProhibitVersionStrings]
+# we don't care about Perl << 5.6, which doesn't support version strings
+
+# vim:ft=dosini
