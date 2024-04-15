@@ -7,7 +7,7 @@ set -e -u
 
 . "${0%/*}/common.sh"
 
-echo 1..1
+echo 1..3
 xout=$(
     < "$dir/README" \
     grep '^   [$] ubanner --help$' -A999 |
@@ -28,5 +28,25 @@ else
     sed -e 's/^/# /' <<< "$diff"
     echo 'not ok 1'
 fi
+xsum=$(sha256sum <<< "$out")
+xsum=${xsum%% *}
+var='SHA-256(help)'
+echo "# $var = $xsum"
+declare -i n=2
+t_sync()
+{
+    path="$1"
+    line=$(grep -F " $var = " < "$dir/$path")
+    sum=${line##*" $var = "}
+    if [[ $sum = $xsum ]]
+    then
+        echo ok $n "$path"
+    else
+        echo not ok $n "$path"
+    fi
+    n+=1
+}
+t_sync 'completion/zsh/_ubanner'
+t_sync 'doc/ubanner.1'
 
 # vim:ts=4 sts=4 sw=4 et ft=sh

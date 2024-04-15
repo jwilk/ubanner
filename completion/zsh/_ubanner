@@ -3,6 +3,8 @@
 # Copyright © 2024 Christopher Bock <christopher@bocki.com>
 # SPDX-License-Identifier: MIT
 
+# SHA-256(help) = 3b402f915db43ab07d8699098cf5746bc6ce7768d32cf74cc9dac4b5ea3ee78b
+
 local arguments
 
 arguments=(
