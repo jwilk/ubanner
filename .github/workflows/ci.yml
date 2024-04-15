@@ -33,6 +33,7 @@ jobs:
     - name: run tests
       run: |
         export LC_ALL=C.UTF-8
+        mkdir -p .git
         make test verbose=1
     - name: install
       run: |
