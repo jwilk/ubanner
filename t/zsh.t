@@ -28,6 +28,16 @@ eval {
 if (defined $ENV{$target_env_var}) {
     plan skip_all => "\$$target_env_var is not supported yet";
 }
+do {
+    my $zsh_err = qx(zsh --version 2>&1 >/dev/null);
+    if ($CHILD_ERROR != 0) {
+        my $msg = 'zsh is unavailable';
+        if ($zsh_err ne '') {
+            $msg = "$msg: $zsh_err";
+        }
+        plan skip_all => $msg;
+    }
+};
 plan tests => 4;
 
 my $basedir = "$FindBin::Bin/..";
