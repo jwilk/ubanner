@@ -18,6 +18,23 @@ ubanner \- Unicode-enabled banner(1)-like program
 .B \-\-list\-fonts
 .YS
 .IP
+.SH DESCRIPTION
+.P
+.B ubanner
+prints text using large semigraphical characters.
+Unlike
+.BR banner (1),
+it has broad Unicode support.
+It uses the Pango library
+for rendering text.
+
+.P
+.B ubanner
+reads the input
+either from the command line
+or from the standard input
+(if it's not a tty).
+.P
 .SH OPTIONS
 .TP
 .B \-\-trim
