@@ -9,7 +9,7 @@ set -e -u
 
 echo 1..3
 xout=$(
-    < "$dir/README" \
+    < "$dir/doc/README" \
     grep '^   [$] ubanner --help$' -A999 |
     tail -n +2 |
     grep -B999 '^   [$]' |

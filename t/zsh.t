@@ -126,7 +126,7 @@ cmp_ok($n, '==', length($input), 'input');
 ($status, $output) = expect(qr/^--version /m);
 xnote($output);
 cmp_ok($status, 'eq', 'OK', 'found options');
-open $fh, '<', "$basedir/README";
+open $fh, '<', "$basedir/doc/README";
 my $readme;
 {
     local $RS = undef;
