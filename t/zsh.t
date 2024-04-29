@@ -127,11 +127,10 @@ cmp_ok($n, '==', length($input), 'input');
 xnote($output);
 cmp_ok($status, 'eq', 'OK', 'found options');
 open $fh, '<', "$basedir/doc/README";
-my $readme;
-{
+my $readme = do {
     local $RS = undef;
-    $readme = <$fh>;
-}
+    <$fh>;
+};
 close $fh;
 $readme =~ /\n +options:\n((?:.+\n)+)/ or die;
 my $help_options = $1;
