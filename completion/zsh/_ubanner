@@ -3,7 +3,7 @@
 # Copyright © 2024 Christopher Bock <christopher@bocki.com>
 # SPDX-License-Identifier: MIT
 
-# SHA-256(help) = 3b402f915db43ab07d8699098cf5746bc6ce7768d32cf74cc9dac4b5ea3ee78b
+# SHA-256(help) = ddbff3e9b1bb9b9d8f33022c1d7f768f8325d23f595fc48c34438bd4b8301d0e
 
 local arguments
 
@@ -11,7 +11,7 @@ arguments=(
   '--trim[trim leading/trailing empty lines]'
   '(-f --font)'{-f,--font}'[use this font face]:font:->fonts'
   + '(fs)'
-  '(-s --font-size)'{-s,--font-size}'[font size in pixels]: :_numbers -d28 -l14 -m280'
+  '(-s --font-size)'{-s,--font-size}'[font size in pixels]: :_numbers -d32 -l16 -m320'
   '(-S --full-screen)'{-S,--full-screen}'[max font size to fit terminal window]'
   + '(excl)'
   {-h,--help}'[show help]'

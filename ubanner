@@ -96,7 +96,7 @@ def pango_render(text, size=(76, 24), font=None, font_size=None):
         yield s.rstrip()
 
 class default:
-    font_size = 28
+    font_size = 32
 
 class act_list_fonts(argparse.Action):
     def __call__(self, *args, **kwargs):
