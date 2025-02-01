@@ -11,13 +11,13 @@ Overview
      TEXT
 
    options:
-     -h, --help            show this help message and exit
-     --version             show version information and exit
-     --list-fonts          print list of available font faces
-     --trim                trim leading/trailing empty lines
-     -f FONT, --font FONT  use this font face
-     -s N, --font-size N   font size in pixels (default: 32)
-     -S, --full-screen     max font size to fit terminal window
+     -h, --help         show this help message and exit
+     --version          show version information and exit
+     --list-fonts       print list of available font faces
+     --trim             trim leading/trailing empty lines
+     -f, --font FONT    use this font face
+     -s, --font-size N  font size in pixels (default: 32)
+     -S, --full-screen  max font size to fit terminal window
 
    $ ubanner -f 'DejaVu Sans' 'd͡ʒ'
                 ░░░▒▒▒▒▒▒▒▒░░░
