@@ -18,6 +18,13 @@ xout=$(
 )
 out=$("$prog" --help)
 out=${out/'TEXT [TEXT ...]'/TEXT ...}  # Python < 3.9 compat: https://bugs.python.org/issue38438
+if [[ "$out" = *' -f FONT, --font FONT  '* ]]  # Python < 3.13 compat
+then
+    out=${out/ -f FONT, --font FONT  / -f, --font FONT    }
+    out=${out/ -s N, --font-size N   / -s, --font-size N  }
+    out=$(sed -r -e 's/([a-z]  +)(   )/\1/' <<< "$out")
+fi
+
 say() { printf "%s\n" "$@"; }
 diff=$(diff -u <(say "$xout") <(say "$out")) || true
 if [ -z "$diff" ]
