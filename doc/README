@@ -4,7 +4,7 @@ Overview
 .. code:: console
 
    $ ubanner --help
-   usage: ubanner [-h] [--version] [--list-fonts] [--trim] [-f FONT] [-s N] [-S]
+   usage: ubanner [-h] [--version] [--list-fonts] [--trim] [-f FONT] [-s N | -S]
                   [TEXT ...]
 
    positional arguments:

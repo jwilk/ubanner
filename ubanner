@@ -138,10 +138,11 @@ def main():
         help='trim leading/trailing empty lines',
     )
     ap.add_argument('-f', '--font', help='use this font face')
-    ap.add_argument('-s', '--font-size', type=int, metavar='N', default=default.font_size,
+    ag = ap.add_mutually_exclusive_group()
+    ag.add_argument('-s', '--font-size', type=int, metavar='N', default=default.font_size,
         help=f'font size in pixels (default: {default.font_size})'
     )
-    ap.add_argument('-S', '--full-screen', dest='font_size', action='store_const', const=None,
+    ag.add_argument('-S', '--full-screen', dest='font_size', action='store_const', const=None,
         help='max font size to fit terminal window'
     )
     opts = ap.parse_args()
