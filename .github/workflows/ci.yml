@@ -47,7 +47,7 @@ jobs:
       run: |
         cd /
         export MANPATH="$HOME/.local/share/man" MANWIDTH=80
-        man 1 ubanner | grep -A 10 -w UBANNER
+        man 1 ubanner | grep -A 10 -iw UBANNER
     - name: run post-install tests
       run: |
         mv ubanner ubanner.bak
